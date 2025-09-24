@@ -1,0 +1,227 @@
+[
+  {
+    "arxiv_id": "2103.00112v3",
+    "title": "Transformer in Transformer",
+    "authors": [
+      "Kai Han",
+      "An Xiao",
+      "Enhua Wu",
+      "Jianyuan Guo",
+      "Chunjing Xu",
+      "Yunhe Wang"
+    ],
+    "abstract": "Transformer is a new kind of neural architecture which encodes the input data\nas powerful features via the attention mechanism. Basically, the visual\ntransformers first divide the input images into several local patches and then\ncalculate both representations and their relationship. Since natural images are\nof high complexity with abundant detail and color information, the granularity\nof the patch dividing is not fine enough for excavating features of objects in\ndifferent scales and locations. In this paper, we point out that the attention\ninside these local patches are also essential for building visual transformers\nwith high performance and we explore a new architecture, namely, Transformer iN\nTransformer (TNT). Specifically, we regard the local patches (e.g.,\n16$\\times$16) as \"visual sentences\" and present to further divide them into\nsmaller patches (e.g., 4$\\times$4) as \"visual words\". The attention of each\nword will be calculated with other words in the given visual sentence with\nnegligible computational costs. Features of both words and sentences will be\naggregated to enhance the representation ability. Experiments on several\nbenchmarks demonstrate the effectiveness of the proposed TNT architecture,\ne.g., we achieve an 81.5% top-1 accuracy on the ImageNet, which is about 1.7%\nhigher than that of the state-of-the-art visual transformer with similar\ncomputational cost. The PyTorch code is available at\nhttps://github.com/huawei-noah/CV-Backbones, and the MindSpore code is\navailable at https://gitee.com/mindspore/models/tree/master/research/cv/TNT.",
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "published": "2021-02-27T03:12:16Z",
+    "updated": "2021-10-26T02:24:24Z",
+    "abstract_stats": {
+      "total_words": 242,
+      "unique_words": 140,
+      "total_sentences": 19,
+      "avg_words_per_sentence": 12.736842105263158,
+      "avg_word_length": 5.3429752066115705
+    }
+  },
+  {
+    "arxiv_id": "2307.01189v2",
+    "title": "Trainable Transformer in Transformer",
+    "authors": [
+      "Abhishek Panigrahi",
+      "Sadhika Malladi",
+      "Mengzhou Xia",
+      "Sanjeev Arora"
+    ],
+    "abstract": "Recent works attribute the capability of in-context learning (ICL) in large\npre-trained language models to implicitly simulating and fine-tuning an\ninternal model (e.g., linear or 2-layer MLP) during inference. However, such\nconstructions require large memory overhead, which makes simulation of more\nsophisticated internal models intractable. In this work, we propose an\nefficient construction, Transformer in Transformer (in short, TinT), that\nallows a transformer to simulate and fine-tune complex models internally during\ninference (e.g., pre-trained language models). In particular, we introduce\ninnovative approximation techniques that allow a TinT model with less than 2\nbillion parameters to simulate and fine-tune a 125 million parameter\ntransformer model within a single forward pass. TinT accommodates many common\ntransformer variants and its design ideas also improve the efficiency of past\ninstantiations of simple models inside transformers. We conduct end-to-end\nexperiments to validate the internal fine-tuning procedure of TinT on various\nlanguage modeling and downstream tasks. For example, even with a limited\none-step budget, we observe TinT for a OPT-125M model improves performance by\n4-16% absolute on average compared to OPT-125M. These findings suggest that\nlarge pre-trained language models are capable of performing intricate\nsubroutines. To facilitate further work, a modular and extensible codebase for\nTinT is included.",
+    "categories": [
+      "cs.CL",
+      "cs.LG"
+    ],
+    "published": "2023-07-03T17:53:39Z",
+    "updated": "2024-02-08T16:19:14Z",
+    "abstract_stats": {
+      "total_words": 204,
+      "unique_words": 132,
+      "total_sentences": 13,
+      "avg_words_per_sentence": 15.692307692307692,
+      "avg_word_length": 5.950980392156863
+    }
+  },
+  {
+    "arxiv_id": "9801033v2",
+    "title": "Quantum Transformations",
+    "authors": [
+      "Alon E. Faraggi",
+      "Marco Matone"
+    ],
+    "abstract": "We show that the stationary quantum Hamilton-Jacobi equation of\nnon-relativistic 1D systems, underlying Bohmian mechanics, takes the classical\nform with $\\partial_q$ replaced by $\\partial_{\\hat q}$ where $d\\hat q={dq\\over\n\\sqrt{1-\\beta^2}}$. The $\\beta^2$ term essentially coincides with the quantum\npotential that, like $V-E$, turns out to be proportional to a curvature arising\nin projective geometry. In agreement with the recently formulated equivalence\nprinciple, these ``quantum transformations'' indicate that the classical and\nquantum potentials deform space geometry.",
+    "categories": [
+      "hep-th",
+      "gr-qc",
+      "quant-ph"
+    ],
+    "published": "1998-01-09T00:50:38Z",
+    "updated": "1998-09-17T14:19:39Z",
+    "abstract_stats": {
+      "total_words": 83,
+      "unique_words": 61,
+      "total_sentences": 3,
+      "avg_words_per_sentence": 27.666666666666668,
+      "avg_word_length": 5.566265060240964
+    }
+  },
+  {
+    "arxiv_id": "0409265v1",
+    "title": "Transformation Digroups",
+    "authors": [
+      "Keqin Liu"
+    ],
+    "abstract": "We introduce the notion of a transformation digroup and prove that every\ndigroup is isomorphic to a transformation digroup.",
+    "categories": [
+      "math.GR",
+      "math.RA",
+      "20N05, 20N99"
+    ],
+    "published": "2004-09-16T16:32:13Z",
+    "updated": "2004-09-16T16:32:13Z",
+    "abstract_stats": {
+      "total_words": 19,
+      "unique_words": 15,
+      "total_sentences": 1,
+      "avg_words_per_sentence": 19.0,
+      "avg_word_length": 5.473684210526316
+    }
+  },
+  {
+    "arxiv_id": "1011.3947v2",
+    "title": "Covariant Transform",
+    "authors": [
+      "Vladimir V. Kisil"
+    ],
+    "abstract": "The paper develops theory of covariant transform, which is inspired by the\nwavelet construction. It was observed that many interesting types of wavelets\n(or coherent states) arise from group representations which are not square\nintegrable or vacuum vectors which are not admissible. Covariant transform\nextends an applicability of the popular wavelets construction to classic\nexamples like the Hardy space H_2, Banach spaces, covariant functional calculus\nand many others.\n  Keywords: Wavelets, coherent states, group representations, Hardy space,\nLittlewood-Paley operator, functional calculus, Berezin calculus, Radon\ntransform, Moebius map, maximal function, affine group, special linear group,\nnumerical range, characteristic function, functional model.",
+    "categories": [
+      "math.FA",
+      "math.CV",
+      "math.RT",
+      "43A85, 32M99, 43A32, 46E10, 47A60, 47A67, 47C99, 81R30"
+    ],
+    "published": "2010-11-17T11:31:27Z",
+    "updated": "2011-01-26T13:23:18Z",
+    "abstract_stats": {
+      "total_words": 100,
+      "unique_words": 69,
+      "total_sentences": 4,
+      "avg_words_per_sentence": 25.0,
+      "avg_word_length": 6.32
+    }
+  },
+  {
+    "arxiv_id": "1103.0156v5",
+    "title": "Lorentz Transformations",
+    "authors": [
+      "Bernard R. Durney"
+    ],
+    "abstract": "This paper describes a particularly didactic and transparent derivation of\nbasic properties of the Lorentz group. The generators for rotations and boosts\nalong an arbitrary direction, as well as their commutation relations, are\nwritten as functions of the unit vectors that define the axis of rotation or\nthe direction of the boost (an approach that can be compared with the one that\nin electrodynamics, works with the electric and magnetic fields instead of the\nMaxwell stress tensor). For finite values of the angle of rotation or the\nboost's velocity, collectively denoted by V, the existence of an exponential\nexpansion for the coordinate transformation's matrix, M (in terms of GV where G\nis the generator) requires that the matrix's derivative with respect to V, be\nequal to GM. This condition can only be satisfied if the transformation is\nadditive as it is indeed the case for rotations, but not for velocities. If it\nis assumed, however, that for boosts such an expansion exists, with V = V(v), v\nbeing the velocity, and if the above condition is imposed on the boost's matrix\nthen its expression in terms of hyperbolic cosh(V) and sinh(V} is recovered,\nand the expression for V(= arc tanh(v)) is determined. A general Lorentz\ntransformation can be written as an exponential containing the sum of a\nrotation and a boost, which to first order is equal to the product of a boost\nwith a rotation. The calculations of the second and third order terms show that\nthe equations for the generators used in this paper, allow to reliably infer\nthe expressions for the higher order generators, without having recourse to the\ncommutation relations. The transformationmatrices for Weyl spinors are derived\nfor finite values of the rotation and velocity, and field representations,\nleading to the expression for the angular momentum operator, are studied.",
+    "categories": [
+      "physics.gen-ph"
+    ],
+    "published": "2011-03-01T12:38:13Z",
+    "updated": "2011-12-09T13:05:15Z",
+    "abstract_stats": {
+      "total_words": 310,
+      "unique_words": 144,
+      "total_sentences": 8,
+      "avg_words_per_sentence": 38.75,
+      "avg_word_length": 4.838709677419355
+    }
+  },
+  {
+    "arxiv_id": "1406.6512v1",
+    "title": "Transforming magnets",
+    "authors": [
+      "F. Sun",
+      "S. He"
+    ],
+    "abstract": "Based on the form-invariant of Maxwell's equations under coordinate\ntransformations, we extend the theory of transformation optics to\ntransformation magneto-statics, which can design magnets through coordinate\ntransformations. Some novel DC magnetic field illusions created by magnets\n(e.g. shirking magnets, cancelling magnets and overlapping magnets) are\ndesigned and verified by numerical simulations. Our research will open a new\ndoor to designing magnets and controlling DC magnetic fields.",
+    "categories": [
+      "physics.class-ph"
+    ],
+    "published": "2014-06-25T09:59:26Z",
+    "updated": "2014-06-25T09:59:26Z",
+    "abstract_stats": {
+      "total_words": 68,
+      "unique_words": 52,
+      "total_sentences": 5,
+      "avg_words_per_sentence": 13.6,
+      "avg_word_length": 6.161764705882353
+    }
+  },
+  {
+    "arxiv_id": "1510.05025v1",
+    "title": "ADE Transform",
+    "authors": [
+      "Ron Donagi",
+      "Martijn Wijnholt"
+    ],
+    "abstract": "There is a beautiful correspondence between configurations of lines on a\nrational surface and tautological bundles over that surface. We extend this\ncorrespondence to families, by means of a generalized Fourier-Mukai transform\nthat relates spectral data to bundles over a rational surface fibration.",
+    "categories": [
+      "math.AG",
+      "hep-th"
+    ],
+    "published": "2015-10-16T21:01:52Z",
+    "updated": "2015-10-16T21:01:52Z",
+    "abstract_stats": {
+      "total_words": 43,
+      "unique_words": 31,
+      "total_sentences": 2,
+      "avg_words_per_sentence": 21.5,
+      "avg_word_length": 5.906976744186046
+    }
+  },
+  {
+    "arxiv_id": "1512.00795v2",
+    "title": "Actions ~ Transformations",
+    "authors": [
+      "Xiaolong Wang",
+      "Ali Farhadi",
+      "Abhinav Gupta"
+    ],
+    "abstract": "What defines an action like \"kicking ball\"? We argue that the true meaning of\nan action lies in the change or transformation an action brings to the\nenvironment. In this paper, we propose a novel representation for actions by\nmodeling an action as a transformation which changes the state of the\nenvironment before the action happens (precondition) to the state after the\naction (effect). Motivated by recent advancements of video representation using\ndeep learning, we design a Siamese network which models the action as a\ntransformation on a high-level feature space. We show that our model gives\nimprovements on standard action recognition datasets including UCF101 and\nHMDB51. More importantly, our approach is able to generalize beyond learned\naction categories and shows significant performance improvement on\ncross-category generalization on our new ACT dataset.",
+    "categories": [
+      "cs.CV"
+    ],
+    "published": "2015-12-02T18:17:32Z",
+    "updated": "2016-07-26T04:51:49Z",
+    "abstract_stats": {
+      "total_words": 132,
+      "unique_words": 86,
+      "total_sentences": 6,
+      "avg_words_per_sentence": 22.0,
+      "avg_word_length": 5.4772727272727275
+    }
+  },
+  {
+    "arxiv_id": "1608.03898v1",
+    "title": "Curvature transformation",
+    "authors": [
+      "Dimitris Vartziotis"
+    ],
+    "abstract": "A transformation based on mean curvature is introduced which morphs\ntriangulated surfaces into round spheres.",
+    "categories": [
+      "cs.GR",
+      "math.DG",
+      "53C44"
+    ],
+    "published": "2016-07-22T12:52:09Z",
+    "updated": "2016-07-22T12:52:09Z",
+    "abstract_stats": {
+      "total_words": 15,
+      "unique_words": 15,
+      "total_sentences": 1,
+      "avg_words_per_sentence": 15.0,
+      "avg_word_length": 6.266666666666667
+    }
+  }
+]
