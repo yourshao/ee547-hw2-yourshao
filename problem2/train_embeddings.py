@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# Allowed deps only: torch, torch.nn, torch.optim, and stdlib (json, sys, os, re, datetime, collections)
-
 import os, sys, json, re, time
 from datetime import datetime, timezone
 from collections import Counter
@@ -11,9 +6,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# ----------------------------
-# Utils: CLI parsing (very small)
-# ----------------------------
 def parse_args(argv):
     if len(argv) < 3:
         print("Usage: python train_embeddings.py <input_papers.json> <output_dir> [--epochs 50] [--batch_size 32]")
@@ -33,9 +25,6 @@ def parse_args(argv):
             sys.exit(1)
     return input_path, output_dir, epochs, batch_size
 
-# ----------------------------
-# Text cleaning
-# ----------------------------
 def clean_text(text):
     if not isinstance(text, str):
         text = "" if text is None else str(text)
@@ -45,9 +34,6 @@ def clean_text(text):
     words = [w for w in text.split() if len(w) >= 2]
     return words
 
-# ----------------------------
-# Data loading (HW#1 papers.json)
-# ----------------------------
 def load_abstracts(papers_json_path):
     print(f"Loading abstracts from {papers_json_path}...")
     with open(papers_json_path, "r", encoding="utf-8") as f:
@@ -63,9 +49,7 @@ def load_abstracts(papers_json_path):
     print(f"Found {len(abstracts)} abstracts")
     return paper_ids, abstracts
 
-# ----------------------------
-# Vocab building: top-K (K=5000), idx 0 = <UNK>
-# ----------------------------
+
 def build_vocab(abstracts, top_k=5000):
     print("Building vocabulary...")
     total_tokens = 0
@@ -83,9 +67,6 @@ def build_vocab(abstracts, top_k=5000):
     print(f"Vocabulary size: {vocab_size} words (top {top_k}), total_words: {total_tokens}")
     return vocab_to_idx, idx_to_vocab, vocab_size, total_tokens, counter
 
-# ----------------------------
-# Sequence encoding + BOW
-# ----------------------------
 def encode_sequences_to_bow(abstracts, vocab_to_idx, max_len=150):
     # Return a list of multi-hot vectors (0/1) as torch tensors
     bow_list = []
@@ -100,9 +81,6 @@ def encode_sequences_to_bow(abstracts, vocab_to_idx, max_len=150):
         bow_list.append(vec)
     return bow_list
 
-# ----------------------------
-# Model
-# ----------------------------
 class TextAutoencoder(nn.Module):
     def __init__(self, vocab_size, hidden_dim, embedding_dim):
         super().__init__()
@@ -126,9 +104,6 @@ class TextAutoencoder(nn.Module):
 def count_params(model: nn.Module) -> int:
     return sum(p.numel() for p in model.parameters())
 
-# ----------------------------
-# Train
-# ----------------------------
 def train(model, bows, epochs=50, batch_size=32, lr=1e-3, device="cpu"):
     model.to(device)
     criterion = nn.BCELoss()
@@ -154,9 +129,6 @@ def train(model, bows, epochs=50, batch_size=32, lr=1e-3, device="cpu"):
         print(f"Epoch {ep}/{epochs}, Loss: {avg:.4f}")
     return avg  # final loss
 
-# ----------------------------
-# Inference: embeddings + per-sample recon loss
-# ----------------------------
 def compute_embeddings_and_losses(model, bows, device="cpu"):
     model.eval()
     criterion = nn.BCELoss(reduction="none")
@@ -168,9 +140,6 @@ def compute_embeddings_and_losses(model, bows, device="cpu"):
         embeddings = z.cpu().tolist()
     return embeddings, losses
 
-# ----------------------------
-# Main
-# ----------------------------
 def main():
     input_path, output_dir, epochs, batch_size = parse_args(sys.argv)
 
@@ -192,14 +161,12 @@ def main():
     hidden_dim = 128
     embedding_dim = 64
 
-    # Create model
     model = TextAutoencoder(vocab_size=vocab_size, hidden_dim=hidden_dim, embedding_dim=embedding_dim)
     total_params = count_params(model)
     arch_str = f"{vocab_size} → {hidden_dim} → {embedding_dim} → {hidden_dim} → {vocab_size}"
     print(f"Model architecture: {arch_str}")
     print(f"Total parameters: {total_params:,}")
 
-    # Verify parameter budget
     LIMIT = 2_000_000
     if total_params > LIMIT:
         print(f"ERROR: Parameter count {total_params:,} exceeds limit of {LIMIT:,}. Please reduce dims.")
@@ -207,7 +174,6 @@ def main():
     else:
         print(f"(under {LIMIT:,} limit ✓)")
 
-    # Train
     print("\nTraining autoencoder...")
     start_ts = datetime.utcnow().replace(tzinfo=timezone.utc).isoformat()
     t0 = time.time()
@@ -216,7 +182,6 @@ def main():
     end_ts = datetime.utcnow().replace(tzinfo=timezone.utc).isoformat()
     print(f"Training complete in {dur:.1f} seconds")
 
-    # Save model
     model_path = os.path.join(output_dir, "model.pth")
     torch.save({
         "model_state_dict": model.state_dict(),
@@ -229,10 +194,8 @@ def main():
     }, model_path)
     print(f"Saved model to {model_path}")
 
-    # Inference for embeddings
     embs, rec_losses = compute_embeddings_and_losses(model, bows, device="cpu")
 
-    # Save embeddings.json
     emb_out = []
     for pid, e, L in zip(paper_ids, embs, rec_losses):
         emb_out.append({
@@ -245,7 +208,7 @@ def main():
         json.dump(emb_out, f, ensure_ascii=False, indent=2)
     print(f"Saved embeddings to {emb_path}")
 
-    # Save vocabulary.json
+
     vocab_path = os.path.join(output_dir, "vocabulary.json")
     with open(vocab_path, "w", encoding="utf-8") as f:
         json.dump({
@@ -256,7 +219,6 @@ def main():
         }, f, ensure_ascii=False, indent=2)
     print(f"Saved vocabulary to {vocab_path}")
 
-    # Save training_log.json
     log_path = os.path.join(output_dir, "training_log.json")
     with open(log_path, "w", encoding="utf-8") as f:
         json.dump({
