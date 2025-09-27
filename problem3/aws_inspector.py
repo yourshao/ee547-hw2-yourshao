@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-AWS Inspector Script
-- Auth via default AWS credential chain (CLI config or env vars)
-- Verifies auth with sts:GetCallerIdentity
-- Collects IAM users, EC2 instances, S3 buckets, Security Groups
-- Outputs JSON (default) or simple table
-"""
 import argparse
 import sys
 import json
@@ -25,7 +16,6 @@ def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
 def validate_region(region: Optional[str]) -> Optional[str]:
-    """Validate region if provided; return region or None to use default from env/config."""
     if not region:
         return None
     available = boto3.session.Session().get_available_regions('ec2')
@@ -305,7 +295,6 @@ def to_table(report: Dict[str, Any]) -> str:
     return "\n".join(lines)
 
 def build_report(session: boto3.session.Session, region: Optional[str]) -> Dict[str, Any]:
-    # Verify identity
     try:
         ident = get_sts_identity(session)
     except ClientError as ce:
@@ -316,10 +305,7 @@ def build_report(session: boto3.session.Session, region: Optional[str]) -> Dict[
         eprint(f"[ERROR] Authentication failed: {ex}")
         sys.exit(1)
 
-    # Region in account_info: prefer provided region; else session region (may be None)
     acct_region = region or session.region_name
-
-    # Collect resources
     iam_users = collect_iam_users(session)
     ec2_instances = collect_ec2(session, region)
     s3_buckets = collect_s3(session, acct_region)
@@ -354,14 +340,12 @@ def main():
     parser.add_argument("--format", choices=["json", "table"], default="json", help="Output format")
     args = parser.parse_args()
 
-    # Validate region (if provided)
     try:
         valid_region = validate_region(args.region) if args.region else None
     except ValueError as ve:
         eprint(str(ve))
         sys.exit(2)
 
-    # Build session using default cred chain (supports CLI config or ENV fallback)
     session = boto3.session.Session(region_name=valid_region)
 
     report = build_report(session, valid_region)
